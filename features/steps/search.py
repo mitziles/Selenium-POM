@@ -46,21 +46,21 @@ class SearchItem:
 
         try:
             self.wait.until(EC.element_to_be_clickable(colour_path)).click()
-            print(f"Culoare '{colour}' aleasa cu succes")
+            print(f"Color '{colour}' selected successfully")
         except:
-            print(f"Eroare: Culoarea '{colour}' nu a fost gasita")
-            raise ValueError("Culoarea nu a fost gasita")
+            print(f"Error: Color '{colour}' was not found")
+            raise ValueError("Color was not found")
         
         try:
             self.wait.until(EC.element_to_be_clickable(self.APPLY_FILTER_BUTTON)).click()
         except:
-            print("Eroare: Butonul 'Afișează' nu a putut fi accesat.")
+            print("Error: The 'Show' button could not be accessed.")
 
         try:
             self.wait.until(EC.presence_of_element_located(self.CHECK_COLOUR_FILTER))
-            print("Filtru de culoare aplicat.")
+            print("Color filter applied.")
         except:
-            print("Eroare: Filtru de culoare neaplicat.")
+            print("Error: Color filter not applied.")
 
     def choose_size(self, size):
         self.wait.until(EC.element_to_be_clickable(self.SIZE_FILTER)).click()
@@ -69,23 +69,23 @@ class SearchItem:
         
         try:
             self.wait.until(EC.element_to_be_clickable(size_path)).click()
-            print(f"Marime '{size}' aleasa cu succes")
+            print(f"Size '{size}' selected successfully")
         except:
-            print(f"Eroare: Marimea '{size}' nu a fost gasita")
-            raise ValueError("Marimea nu a fost gasita")
+            print(f"Error: Size '{size}' was not found")
+            raise ValueError("Size was not found")
             
         try:
             self.wait.until(EC.element_to_be_clickable(self.APPLY_FILTER_BUTTON)).click()
         except:
-            print("Eroare: Butonul 'Afișează' nu a putut fi accesat.")
+            print("Error: The 'Show' button could not be accessed.")
 
         try:
             self.wait.until(EC.presence_of_element_located(self.CHECK_SIZE_FILTER))
-            print("Filtru de marime aplicat.")
+            print("Size filter applied.")
         except:
-            print("Eroare: Filtru de marime neaplicat.")
+            print("Error: Size filter not applied.")
     
-@given("Userul intra pe site")
+@given("The user is on the site")
 def step_enter_site(context):
     options = Options()
     options.page_load_strategy = "eager"
@@ -97,19 +97,19 @@ def step_enter_site(context):
 
     context.search_test = SearchItem(context.driver)
 
-@then("Userul da click pe search bar")
+@then("The user clicks the search bar")
 def step_click_searchbar(context):
     context.search_test.click_search_bar()
 
-@then('Userul introduce numele unei perechi de incaltaminte "{nume}"')
-def step_introduce_text(context, nume):
-    context.search_test.fill_search_bar(nume)
+@then('The user enters the name of a footwear item "{name}"')
+def step_introduce_text(context, name):
+    context.search_test.fill_search_bar(name)
 
-@then('Userul alege o "{culoare}"')
-def step_select_colour(context, culoare):
-    context.search_test.choose_colour(culoare)
+@then('The user selects a "{color}"')
+def step_select_colour(context, color):
+    context.search_test.choose_colour(color)
 
-@then('Userul alege o anumite "{marime}"')
-def step_select_size(context, marime):
-    context.search_test.choose_size(marime)
+@then('The user selects a specific "{size}"')
+def step_select_size(context, size):
+    context.search_test.choose_size(size)
     context.driver.quit()

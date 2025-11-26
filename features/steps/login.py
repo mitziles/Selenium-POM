@@ -25,9 +25,9 @@ class LoginPage:
         try:
             cookie_button = self.wait.until(EC.element_to_be_clickable(self.BUTTON_ACCEPT_COOKIES))
             cookie_button.click()
-            print("Cookie banner acceptat. Se continuă spre login.")
+            print("Cookie banner accepted. Continuing to login.")
         except:
-            print("Nu a fost detectat niciun banner de cookie-uri sau pop-up.")
+            print("No cookie banner or pop-up was detected.")
             pass
             
         self.wait.until(EC.element_to_be_clickable(self.BUTTON_USER_ACCOUNT))
@@ -36,7 +36,7 @@ class LoginPage:
         try:
             self.wait.until(EC.element_to_be_clickable(self.EMAIL_FIELD))
         except:
-            print("Câmpul de login nu a apărut la timp.")
+            print("The login field did not appear in time.")
             pass
 
     def fill_and_submit_login(self, email, password):
@@ -52,7 +52,7 @@ class LoginPage:
         self.wait.until(EC.visibility_of_element_located(self.VERIFY_LOGIN))
 
 
-@given("Utilizatorul acceseaza siteul")
+@given("The user accesses the site")
 def step_enter_site(context):
     
     options = Options()
@@ -65,19 +65,19 @@ def step_enter_site(context):
 
     context.login_page = LoginPage(context.driver)
 
-@then("Utilizatorul da click pe butonul de login")
+@then("The user clicks the login button")
 def step_click_login_button(context):
     context.login_page.navigate_to_login()
 
-@then('Introduce credentialele: email "{email}" si parola "{password}"')
+@then('Enters credentials: email "{email}" and password "{password}"')
 def step_introduce_creds(context, email, password):
     context.login_page.fill_and_submit_login(email, password)
 
-@when("Apasa pe butonul de conectare")
+@when("Clicks the connect button")
 def step_press_login_button(context):
     context.login_page.click_login_button()
 
-@then("Loginul a reusit")
+@then("Login was successful")
 def step_login_complete(context):
     context.login_page.is_login_successful()
     context.driver.quit()

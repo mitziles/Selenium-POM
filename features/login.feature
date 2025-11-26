@@ -1,13 +1,12 @@
-Feature: Incercare login
+Feature: Login Attempt
 
-    Scenario Outline: Loginul unui utilizator cu date valabile
-        Given Utilizatorul acceseaza siteul
-        Then Utilizatorul da click pe butonul de login
-        Then Introduce credentialele: email "<email>" si parola "<password>"
-        When Apasa pe butonul de conectare
-        Then Loginul a reusit
+    Scenario Outline: User login with valid credentials
+        Given The user accesses the site
+        Then The user clicks the login button
+        Then Enters credentials: email "<email>" and password "<password>"
+        When Clicks the connect button
+        Then Login was successful
 
         Examples:
-            | email   | password   |
-            | x | y |
-
+            | email | password |
+            | x     | y        |

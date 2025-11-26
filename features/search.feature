@@ -1,13 +1,12 @@
-Feature: Aplicare filtre
+Feature: Applying Filters
 
-    Scenario Outline: Utilizatorul aplica filtre pentru o anumita incaltaminte
-        Given Userul intra pe site
-        Then Userul da click pe search bar
-        Then Userul introduce numele unei perechi de incaltaminte "<nume>"
-        Then Userul alege o "<culoare>"
-        Then Userul alege o anumite "<marime>"
+    Scenario Outline: User applies filters for a specific footwear item
+        Given The user is on the site
+        Then The user clicks the search bar
+        Then The user enters the name of a footwear item "<name>"
+        Then The user selects a "<color>"
+        Then The user selects a specific "<size>"
 
         Examples:
-            | nume      | culoare   | marime    |
-            | Nike      | Gri   | 35        |
-
+            | name  | color | size |
+            | Nike  | Gri  | 35   |
